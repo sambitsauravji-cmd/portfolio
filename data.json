@@ -15,7 +15,7 @@
   "skills": [
     {
       "category": "Languages",
-      "items": ["HTML", "CSS", "JavaScript", "Python"]
+      "items": ["HTML", "CSS", "JavaScript", "Python", "Java"]
     },
     {
       "category": "Frameworks & Libraries",
