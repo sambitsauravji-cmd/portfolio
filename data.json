@@ -29,8 +29,8 @@
 
   "projects": [
     {
-      "title": "DevLink",
-      "description": "A developer bookmark manager to save, tag, and search useful links. Built with vanilla JS and local storage.",
+      "title": "Photo frame website",
+      "description": "A static website to showcase photo frames for a Photo frame business.",
       "tags": ["HTML", "CSS", "JavaScript"],
       "github": "https://github.com/sambitsauravji-cmd",
       "live": "#"
