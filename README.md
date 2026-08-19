@@ -1,6 +1,6 @@
 # portfolio
 my portfolio
-Link of the site 👉🏻 [https://sambitsauravji-cmd.github.io/portfolio/]
+Link of the site 👉🏻 (https://sambitsauravji-cmd.github.io/portfolio/)[click here]
 
 
 ## TECH STACK
