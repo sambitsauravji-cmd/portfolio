@@ -1,0 +1,762 @@
+/* ================================================================
+   STYLE.CSS — Sambit Sourav Portfolio
+   Organized in layers: Variables → Reset → Base → Layout →
+   Components → Animations → Responsive
+================================================================ */
+
+
+/* ----------------------------------------------------------------
+   LAYER 1: CSS VARIABLES
+   Define everything once here. Use var(--name) anywhere below.
+   Change one value here → updates the entire site instantly.
+---------------------------------------------------------------- */
+:root {
+  /* Colors */
+  --bg-primary:      #050816;          /* deep dark navy — main background */
+  --bg-secondary:    #0a0f2e;          /* slightly lighter dark for depth */
+  --accent-blue:     #6c63ff;          /* primary accent — electric violet */
+  --accent-cyan:     #00d4ff;          /* secondary accent — electric cyan */
+  --accent-pink:     #ff6bdf;          /* tertiary — used sparingly */
+  --text-primary:    #e8e8f0;          /* near white — main text */
+  --text-secondary:  #8b8fad;          /* muted — subtitles, captions */
+  --text-heading:    #ffffff;          /* pure white — headings */
+
+  /* Glass effect — the core of the design */
+  --glass-bg:        rgba(255, 255, 255, 0.04);   /* very subtle white tint */
+  --glass-border:    rgba(255, 255, 255, 0.10);   /* faint white border */
+  --glass-blur:      blur(16px);                  /* the frosted blur */
+  --glass-shadow:    0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* Typography */
+  --font-body:       'Inter', sans-serif;
+  --font-heading:    'Space Grotesk', sans-serif;
+
+  /* Spacing scale — consistent gaps across the site */
+  --space-xs:   0.5rem;    /*  8px */
+  --space-sm:   1rem;      /* 16px */
+  --space-md:   2rem;      /* 32px */
+  --space-lg:   4rem;      /* 64px */
+  --space-xl:   8rem;      /* 128px */
+
+  /* Layout */
+  --max-width:  1100px;    /* page never gets wider than this */
+  --nav-height: 70px;
+
+  /* Borders */
+  --radius-sm:  8px;
+  --radius-md:  16px;
+  --radius-lg:  24px;
+  --radius-pill: 999px;   /* makes any element a perfect pill shape */
+
+  /* Transitions */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ----------------------------------------------------------------
+   LAYER 2: RESET
+   Browsers add their own margins, paddings, font sizes by default.
+   We wipe them so we start from a clean slate.
+   box-sizing: border-box means padding is INCLUDED in width,
+   not added on top — far more predictable to work with.
+---------------------------------------------------------------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;           /* smooth jump when nav links clicked */
+  scroll-padding-top: var(--nav-height); /* don't hide content under navbar */
+}
+
+a {
+  text-decoration: none;             /* remove underlines from all links */
+  color: inherit;
+}
+
+ul {
+  list-style: none;                  /* remove bullet points */
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+/* ----------------------------------------------------------------
+   LAYER 3: BASE STYLES
+   The foundational styles everything inherits from.
+---------------------------------------------------------------- */
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  overflow-x: hidden;                /* prevent horizontal scroll */
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--text-heading);
+  line-height: 1.2;
+}
+
+/* Centering wrapper — used inside every section */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+/* Section spacing — every section gets the same vertical breathing room */
+section {
+  padding: var(--space-xl) var(--space-md);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* Section header: title + decorative line */
+.section-header {
+  margin-bottom: var(--space-lg);
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);   /* clamp = responsive font size */
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--text-heading), var(--accent-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;     /* gradient text effect */
+  background-clip: text;
+  display: inline-block;
+  margin-bottom: var(--space-xs);
+}
+
+/* The colored underline beneath section titles */
+.section-line {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+  border-radius: var(--radius-pill);
+}
+
+
+/* ----------------------------------------------------------------
+   LAYER 4A: GLASS CARD — the core reusable component
+   backdrop-filter: blur() is what creates the frosted glass effect.
+   It blurs everything BEHIND the element.
+   The background is a very faint white, border is a faint white line.
+---------------------------------------------------------------- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);    /* Safari support */
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  padding: var(--space-md);
+  transition: var(--transition);
+}
+
+.glass-card:hover {
+  border-color: rgba(108, 99, 255, 0.35);        /* accent glow on hover */
+  box-shadow: 0 16px 48px rgba(108, 99, 255, 0.15);
+  transform: translateY(-4px);                   /* subtle lift */
+}
+
+
+/* ----------------------------------------------------------------
+   LAYER 4B: BUTTONS
+   Two variants — primary (filled accent) and secondary (outlined).
+---------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(108, 99, 255, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(108, 99, 255, 0.6);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+
+/* ----------------------------------------------------------------
+   LAYER 5A: NAVBAR
+---------------------------------------------------------------- */
+#navbar {
+  position: fixed;                   /* sticks to top as you scroll */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-md);
+  z-index: 1000;                     /* always on top of everything */
+  transition: var(--transition);
+
+  /* starts transparent, gets glass effect after scroll (via JS class) */
+  background: transparent;
+}
+
+/* JS adds .scrolled class when user scrolls down */
+#navbar.scrolled {
+  background: rgba(5, 8, 22, 0.85);
+  backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  position: relative;
+}
+
+/* Underline that slides in on hover */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;                          /* starts invisible */
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+  border-radius: var(--radius-pill);
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.nav-links a:hover::after {
+  width: 100%;                       /* slides in from left */
+}
+
+
+/* ----------------------------------------------------------------
+   LAYER 5B: HERO SECTION
+---------------------------------------------------------------- */
+#hero {
+  min-height: 100vh;                 /* full screen height */
+  display: flex;
+  align-items: center;
+  position: relative;                /* needed for absolute blob children */
+  overflow: hidden;
+  padding-top: var(--nav-height);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;                        /* above the blobs */
+  max-width: 700px;
+}
+
+.hero-greeting {
+  font-size: 1.1rem;
+  color: var(--accent-cyan);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: var(--space-xs);
+}
+
+.hero-name {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: var(--space-sm);
+  color: var(--text-heading);
+}
+
+.hero-role {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--accent-blue);
+  margin-bottom: var(--space-sm);
+  min-height: 2.5rem;               /* prevents layout jump during typewriter */
+  font-family: var(--font-heading);
+}
+
+/* The blinking cursor next to the typewriter text */
+.cursor {
+  display: inline-block;
+  animation: blink 0.8s step-end infinite;
+  color: var(--accent-cyan);
+  font-weight: 300;
+}
+
+.hero-bio {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin-bottom: var(--space-md);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+
+/* ----------------------------------------------------------------
+   BACKGROUND BLOBS
+   Large blurred circles that sit behind everything.
+   filter: blur() creates the soft glow. They're positioned
+   absolutely relative to the hero section.
+   animation: float makes them slowly drift up and down.
+---------------------------------------------------------------- */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+  z-index: 1;
+  animation: float 8s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 500px;
+  height: 500px;
+  background: var(--accent-blue);
+  top: -100px;
+  right: -100px;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  width: 400px;
+  height: 400px;
+  background: var(--accent-cyan);
+  bottom: 0;
+  right: 200px;
+  animation-delay: -3s;            /* negative delay = starts mid-animation */
+}
+
+.blob-3 {
+  width: 300px;
+  height: 300px;
+  background: var(--accent-pink);
+  top: 40%;
+  left: 60%;
+  animation-delay: -5s;
+}
+
+
+/* ----------------------------------------------------------------
+   LAYER 5C: ABOUT SECTION
+---------------------------------------------------------------- */
+.about-card {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.about-text p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--space-md);
+}
+
+/* The stat chips: "10+ Projects", "8+ Technologies" etc. */
+.about-stats {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.stat-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(108, 99, 255, 0.1);
+  border: 1px solid rgba(108, 99, 255, 0.25);
+  border-radius: var(--radius-md);
+  min-width: 100px;
+  transition: var(--transition);
+}
+
+.stat-chip:hover {
+  background: rgba(108, 99, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+
+/* ----------------------------------------------------------------
+   LAYER 5D: SKILLS SECTION
+---------------------------------------------------------------- */
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.skill-group {
+  padding: var(--space-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  backdrop-filter: var(--glass-blur);
+}
+
+.skill-category {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-cyan);
+  margin-bottom: var(--space-sm);
+  font-weight: 600;
+}
+
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+/* Individual skill badge */
+.skill-pill {
+  padding: 0.4rem 1rem;
+  background: rgba(108, 99, 255, 0.08);
+  border: 1px solid rgba(108, 99, 255, 0.2);
+  border-radius: var(--radius-pill);
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  transition: var(--transition);
+  cursor: default;
+}
+
+.skill-pill:hover {
+  background: rgba(108, 99, 255, 0.2);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+
+/* ----------------------------------------------------------------
+   LAYER 5E: PROJECTS SECTION
+---------------------------------------------------------------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-md);
+}
+
+/* auto-fit + minmax = responsive grid with NO media queries.
+   Cards fill available space, each at minimum 300px wide.
+   When there's not enough room for 2 columns, it drops to 1. */
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.project-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-icon {
+  font-size: 2rem;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.project-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.project-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  flex: 1;                           /* pushes links to the bottom */
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.project-tag {
+  padding: 0.2rem 0.7rem;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  color: var(--accent-cyan);
+}
+
+.project-links {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: auto;                  /* stick to the bottom of the card */
+}
+
+.project-link {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.project-link:hover {
+  color: var(--accent-blue);
+}
+
+.project-link-live:hover {
+  color: var(--accent-cyan);
+}
+
+
+/* ----------------------------------------------------------------
+   LAYER 5F: CONTACT SECTION
+---------------------------------------------------------------- */
+.contact-card {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.contact-intro {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.contact-email {
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: var(--transition);
+}
+
+.contact-email:hover {
+  opacity: 0.8;
+}
+
+.contact-links {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  backdrop-filter: var(--glass-blur);
+}
+
+.social-btn:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+.social-icon {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: var(--accent-cyan);
+}
+
+
+/* ----------------------------------------------------------------
+   LAYER 5G: FOOTER
+---------------------------------------------------------------- */
+#footer {
+  text-align: center;
+  padding: var(--space-md);
+  border-top: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
+
+/* ----------------------------------------------------------------
+   LAYER 6: ANIMATIONS
+---------------------------------------------------------------- */
+
+/* Blobs drifting slowly up and down */
+@keyframes float {
+  0%   { transform: translateY(0px) scale(1); }
+  50%  { transform: translateY(-30px) scale(1.03); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+/* Cursor blinking next to typewriter text */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* --------------------------------
+   SCROLL REVEAL ANIMATION
+   .reveal = initial hidden state (added by JS before observing)
+   .visible = shown state (added by JS when element enters viewport)
+   The transition on transform + opacity creates the slide-up fade.
+-------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children inside a revealed group */
+.skill-group.reveal { transition-delay: 0.05s; }
+.project-card.reveal { transition-delay: 0.1s; }
+
+
+/* ----------------------------------------------------------------
+   LAYER 7: RESPONSIVE DESIGN
+   @media queries apply styles ONLY at certain screen widths.
+   We use "max-width" = mobile-first adjustments at smaller screens.
+---------------------------------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Reduce section padding on mobile */
+  section {
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  /* Stack nav links — hide them on small screens (hamburger menu
+     would go here in a future step) */
+  .nav-links {
+    display: none;
+  }
+
+  /* Hero buttons stack vertically */
+  .hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* About card stacks vertically */
+  .about-card {
+    flex-direction: column;
+  }
+
+  /* Projects become single column */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Blobs scale down so they don't overwhelm mobile */
+  .blob-1 { width: 300px; height: 300px; }
+  .blob-2 { width: 250px; height: 250px; }
+  .blob-3 { width: 200px; height: 200px; }
+}
+
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: 2.2rem;
+  }
+
+  .stat-chip {
+    min-width: 80px;
+    padding: var(--space-xs) var(--space-sm);
+  }
+}

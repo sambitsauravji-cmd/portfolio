@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sambit Sourav — Developer</title>
+
+  <!-- Google Fonts: Inter for body, Space Grotesk for headings -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- Your stylesheet — we build this in Step 2 -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVIGATION BAR
+       Fixed at top, links jump to each section on click
+  ============================================================ -->
+  <nav id="navbar">
+    <div class="nav-logo">SS</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+       First thing the visitor sees — name, title, CTA buttons
+       JS will inject: name, typewriter role text
+  ============================================================ -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-greeting">Hi, I'm</p>
+      <h1 class="hero-name" id="hero-name"></h1>  <!-- JS fills this -->
+      <h2 class="hero-role">
+        <span id="typewriter"></span>              <!-- JS types this -->
+        <span class="cursor">|</span>
+      </h2>
+      <p class="hero-bio" id="hero-bio"></p>       <!-- JS fills this -->
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+      </div>
+    </div>
+
+    <!-- Decorative background blobs — pure CSS, no images needed -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT SECTION
+       Glass card with bio and stat chips
+       JS will inject content from data.json
+  ============================================================ -->
+  <section id="about">
+    <div class="section-header">
+      <h2 class="section-title">About Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-card glass-card">
+      <div class="about-text">
+        <p id="about-description"></p>  <!-- JS fills this -->
+        <div class="about-stats" id="about-stats"></div>  <!-- JS builds chips -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SKILLS SECTION
+       Grid of glass pill badges grouped by category
+       JS will inject from data.json
+  ============================================================ -->
+  <section id="skills">
+    <div class="section-header">
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-container" id="skills-container">
+      <!-- JS dynamically builds skill groups here -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROJECTS SECTION
+       Glass cards with project name, description, tags, links
+       JS will inject from data.json
+  ============================================================ -->
+  <section id="projects">
+    <div class="section-header">
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid" id="projects-grid">
+      <!-- JS dynamically builds project cards here -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT SECTION
+       Glass card with email and social links
+       JS will inject from data.json
+  ============================================================ -->
+  <section id="contact">
+    <div class="section-header">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-card glass-card">
+      <p class="contact-intro" id="contact-intro"></p>
+      <a class="contact-email" id="contact-email"></a>
+      <div class="contact-links" id="contact-links">
+        <!-- JS builds social icon links here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer id="footer">
+    <p id="footer-text"></p>  <!-- JS fills this -->
+  </footer>
+
+  <!-- Your scripts — load AFTER the HTML so JS can find the elements -->
+  <script src="script.js"></script>
+
+</body>
+</html>
