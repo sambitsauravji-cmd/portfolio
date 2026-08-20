@@ -53,11 +53,11 @@
 
   "contact": {
     "intro": "I'm currently open to new opportunities and collaborations. Whether it's a project, a question, or just a hello — my inbox is open.",
-    "email": "sambit@example.com",
+    "email": "sambitsauravji@gmail.com",
     "socials": [
       { "label": "GitHub", "url": "https://github.com/sambitsauravji-cmd", "icon": "GH" },
-      { "label": "LinkedIn", "url": "https://linkedin.com/in/sambitsourav", "icon": "LI" },
-      { "label": "X", "url": "https://twitter.com/sambitsourav", "icon": "TW" }
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/sambit-sourav-0107b02b5/", "icon": "LI" },
+      { "label": "X", "url": "https://x.com/SambitSourav11", "icon": "X" }
     ]
   },
 
