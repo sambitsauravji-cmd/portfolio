@@ -1,66 +1,113 @@
 {
   "name": "Sambit Sourav",
-  "role": ["Full Stack Developer", "Web Engineer", "Problem Solver"],
+  "role": [
+    "Full Stack Developer",
+    "Web Engineer",
+    "Problem Solver"
+  ],
   "bio": "I build clean, fast, and thoughtful web experiences. Passionate about turning ideas into real products.",
-
   "about": {
     "description": "I'm Sambit Sourav, a web developer from India with a deep interest in building things that live on the internet. I enjoy the full journey — from designing the structure of a page to deploying it live. Currently leveling up my skills one project at a time.",
     "image": "profile.jpg",
     "stats": [
-      { "label": "Projects Built", "value": "10+" },
-      { "label": "Technologies", "value": "8+" },
-      { "label": "Cups of Coffee", "value": "∞" }
+      {
+        "label": "Projects Built",
+        "value": "4+"
+      },
+      {
+        "label": "Technologies",
+        "value": "8+"
+      },
+      {
+        "label": "Cups of Coffee",
+        "value": "∞"
+      }
     ]
   },
-
   "skills": [
     {
       "category": "Languages",
-      "items": ["HTML", "CSS", "JavaScript", "Python"]
+      "items": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Python"
+      ]
     },
     {
       "category": "Frameworks & Libraries",
-      "items": ["React", "Node.js", "Express"]
+      "items": [
+        "React",
+        "Node.js",
+        "Express"
+      ]
     },
     {
       "category": "Tools & Platforms",
-      "items": ["Git", "GitHub", "VS Code", "Figma", "Netlify"]
+      "items": [
+        "Git",
+        "GitHub",
+        "VS Code",
+        "Figma"
+      ]
     }
   ],
-
   "projects": [
     {
       "title": "DevLink",
       "description": "A developer bookmark manager to save, tag, and search useful links. Built with vanilla JS and local storage.",
-      "tags": ["HTML", "CSS", "JavaScript", "JAVA", "REST API"],
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "JAVA",
+        "REST API"
+      ],
       "github": "https://github.com/sambitsauravji-cmd/portfolio",
       "live": "#"
     },
     {
       "title": "WeatherNow",
       "description": "A real-time weather app that fetches data from OpenWeatherMap API and displays forecasts with animated icons.",
-      "tags": ["JavaScript", "REST API", "CSS"],
+      "tags": [
+        "JavaScript",
+        "REST API",
+        "CSS"
+      ],
       "github": "https://github.com/sambitsauravji-cmd/portfolio",
       "live": "#"
     },
     {
       "title": "Portfolio v1",
       "description": "My first portfolio website — built to learn HTML & CSS fundamentals. Replaced by this version.",
-      "tags": ["HTML", "CSS"],
+      "tags": [
+        "HTML",
+        "CSS"
+      ],
       "github": "https://github.com/sambitsauravji-cmd/portfolio",
       "live": "#"
     }
   ],
-
   "contact": {
     "intro": "I'm currently open to new opportunities and collaborations. Whether it's a project, a question, or just a hello — my inbox is open.",
     "email": "sambitsauravji@gmail.com",
     "socials": [
-      { "label": "GitHub", "url": "https://github.com/sambitsauravji-cmd/portfolio", "icon": "GH" },
-      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/sambit-sourav-0107b02b5/", "icon": "LI" },
-      { "label": "Twitter", "url": "https://x.com/SambitSourav11", "icon": "X" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/sambitsauravji-cmd/portfolio",
+        "icon": "GH"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/sambit-sourav-0107b02b5/",
+        "icon": "LI"
+      },
+      {
+        "label": "Twitter",
+        "url": "https://x.com/SambitSourav11",
+        "icon": "X"
+      }
     ]
   },
-
   "footer": "Designed & Built by Sambit Sourav"
 }

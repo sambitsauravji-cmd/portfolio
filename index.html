@@ -1,138 +1,445 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sambit Sourav — Developer</title>
+  <title>Sambit Sourav — Web Developer Portfolio</title>
+  <meta name="description"
+    content="Portfolio of Sambit Sourav — Web Developer building clean, responsive, and modern websites using HTML, CSS, JavaScript, and React." />
+  <meta name="keywords" content="Sambit Sourav, Web Developer, Frontend Developer, JavaScript, React, Portfolio" />
+  <meta name="author" content="Sambit Sourav" />
 
-  <!-- Google Fonts: Inter for body, Space Grotesk for headings -->
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Sambit Sourav — Web Developer" />
+  <meta property="og:description" content="Building clean, responsive, and functional web applications." />
+  <meta property="og:image" content="profile.jpg" />
+  <meta name="theme-color" content="#090e0a" />
+
+  <!-- Google Fonts: Space Grotesk (Clean Headings), Plus Jakarta Sans (Body), JetBrains Mono (Code) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet" />
 
-  <!-- Your stylesheet — we build this in Step 2 -->
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
   <!-- ============================================================
+       SCROLL PROGRESS BAR & AMBIENT SPOTLIGHT
+  ============================================================ -->
+  <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+  <div id="cursor-spotlight" class="cursor-spotlight" aria-hidden="true"></div>
+
+  <!-- Ambient Backdrop -->
+  <canvas id="ambient-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============================================================
        NAVIGATION BAR
-       Fixed at top, links jump to each section on click
   ============================================================ -->
-  <nav id="navbar">
-    <div class="nav-logo">SS</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <header id="header">
+    <nav id="navbar" class="navbar" aria-label="Main Navigation">
+      <div class="nav-container">
+        <!-- Monogram Logo -->
+        <a href="#hero" class="nav-brand" aria-label="Sambit Sourav Home">
+          <div class="brand-monogram">
+            <span>SS</span>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">Sambit Sourav</span>
+            <span class="brand-tag">Developer</span>
+          </div>
+        </a>
 
-  <!-- ============================================================
-       HERO SECTION
-       First thing the visitor sees — name, title, CTA buttons
-       JS will inject: name, typewriter role text
-  ============================================================ -->
-  <section id="hero">
-    <div class="hero-content">
-      <p class="hero-greeting">Hi, I'm</p>
-      <h1 class="hero-name" id="hero-name"></h1>  <!-- JS fills this -->
-      <h2 class="hero-role">
-        <span id="typewriter"></span>              <!-- JS types this -->
-        <span class="cursor">|</span>
-      </h2>
-      <p class="hero-bio" id="hero-bio"></p>       <!-- JS fills this -->
-      <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        <!-- Desktop Navigation Links -->
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!-- Right Action: Contact Button & Mobile Toggle -->
+        <div class="nav-actions">
+          <a href="#contact" class="btn btn-nav">Contact Me</a>
+          <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+      <div class="mobile-drawer-content">
+        <ul class="mobile-nav-links">
+          <li><a href="#about" class="mobile-link">About</a></li>
+          <li><a href="#skills" class="mobile-link">Skills</a></li>
+          <li><a href="#projects" class="mobile-link">Projects</a></li>
+          <li><a href="#contact" class="mobile-link">Contact</a></li>
+        </ul>
+        <div class="mobile-drawer-footer">
+          <a href="#contact" class="btn btn-primary w-full text-center">Contact Me ↗</a>
+        </div>
       </div>
     </div>
+  </header>
 
-    <!-- Decorative background blobs — pure CSS, no images needed -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </section>
+  <main>
+    <!-- ============================================================
+         HERO SECTION
+    ============================================================ -->
+    <section id="hero" class="hero-section">
+      <div class="hero-container">
 
-  <!-- ============================================================
-       ABOUT SECTION
-       Glass card with bio and stat chips
-       JS will inject content from data.json
-  ============================================================ -->
-  <section id="about">
-    <div class="section-header">
-      <h2 class="section-title">About Me</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="about-card glass-card">
-      <div class="about-text">
-        <p id="about-description"></p>  <!-- JS fills this -->
-        <div class="about-stats" id="about-stats"></div>  <!-- JS builds chips -->
+        <p class="hero-greeting animate-fade-in-up delay-1">
+          <span class="greeting-line"></span>
+          <span>Hi, I'm</span>
+        </p>
+
+        <h1 class="hero-name animate-fade-in-up delay-2" id="hero-name">
+          Sambit <span class="gradient-text">Sourav</span>
+        </h1>
+
+        <div class="hero-role-wrapper animate-fade-in-up delay-3">
+          <span class="role-prefix">I am a</span>
+          <h2 class="hero-role">
+            <span id="typewriter"></span>
+            <span class="cursor" aria-hidden="true">|</span>
+          </h2>
+        </div>
+
+        <p class="hero-bio animate-fade-in-up delay-4" id="hero-bio">
+          I build clean, fast, and thoughtful web experiences. Passionate about turning ideas into real products.
+        </p>
+
+        <!-- CTA Buttons & Quick Actions -->
+        <div class="hero-cta-group animate-fade-in-up delay-5">
+          <a href="#projects" class="btn btn-primary btn-glow">
+            <span>View Projects</span>
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <span>Get in Touch</span>
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </a>
+          <button id="copy-email-hero" class="btn btn-ghost" title="Copy Email">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy Email</span>
+          </button>
+        </div>
+
+        <!-- Quick Feature Bar -->
+        <div class="hero-highlights animate-fade-in-up delay-6">
+          <div class="highlight-item">
+            <span class="highlight-bullet">▹</span>
+            <span>Clean Code</span>
+          </div>
+          <div class="highlight-divider"></div>
+          <div class="highlight-item">
+            <span class="highlight-bullet">▹</span>
+            <span>Responsive Layouts</span>
+          </div>
+          <div class="highlight-divider"></div>
+          <div class="highlight-item">
+            <span class="highlight-bullet">▹</span>
+            <span>Continuous Learner</span>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ============================================================
-       SKILLS SECTION
-       Grid of glass pill badges grouped by category
-       JS will inject from data.json
-  ============================================================ -->
-  <section id="skills">
-    <div class="section-header">
-      <h2 class="section-title">Skills</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="skills-container" id="skills-container">
-      <!-- JS dynamically builds skill groups here -->
-    </div>
-  </section>
+      <!-- Subtle Ambient Glow -->
+      <div class="ambient-glow glow-1" aria-hidden="true"></div>
+      <div class="ambient-glow glow-2" aria-hidden="true"></div>
+    </section>
 
-  <!-- ============================================================
-       PROJECTS SECTION
-       Glass cards with project name, description, tags, links
-       JS will inject from data.json
-  ============================================================ -->
-  <section id="projects">
-    <div class="section-header">
-      <h2 class="section-title">Projects</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="projects-grid" id="projects-grid">
-      <!-- JS dynamically builds project cards here -->
-    </div>
-  </section>
-
-  <!-- ============================================================
-       CONTACT SECTION
-       Glass card with email and social links
-       JS will inject from data.json
-  ============================================================ -->
-  <section id="contact">
-    <div class="section-header">
-      <h2 class="section-title">Get In Touch</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="contact-card glass-card">
-      <p class="contact-intro" id="contact-intro"></p>
-      <a class="contact-email" id="contact-email"></a>
-      <div class="contact-links" id="contact-links">
-        <!-- JS builds social icon links here -->
+    <!-- ============================================================
+         ABOUT SECTION (BENTO GRID)
+    ============================================================ -->
+    <section id="about" class="about-section">
+      <div class="section-header">
+        <div class="section-badge">
+          <span>ABOUT ME</span>
+        </div>
+        <h2 class="section-title">Who I <span class="gradient-text">Am</span></h2>
+        <p class="section-subtitle">A glimpse into my background, my journey into web development, and what I love building.</p>
       </div>
-    </div>
-  </section>
+
+      <div class="bento-grid">
+        <!-- Main Bio Card with Profile -->
+        <div class="bento-card bento-card-main glass-card">
+          <div class="bento-profile-row">
+            <div class="profile-image-container">
+              <img src="profile.jpg" alt="Sambit Sourav" class="profile-image" id="about-image" />
+            </div>
+            <div class="profile-header-info">
+              <h3 class="profile-name">Sambit Sourav</h3>
+              <p class="profile-title">Full Stack Developer & Problem Solver</p>
+              <div class="profile-tags">
+                <span class="pill-tag">India</span>
+                <span class="pill-tag">JavaScript / React</span>
+                <span class="pill-tag">HTML & CSS</span>
+              </div>
+            </div>
+          </div>
+          <div class="bento-bio-content">
+            <p id="about-description" class="about-bio-text">
+              I'm Sambit Sourav, a web developer from India with a deep interest in building things that live on the internet. I enjoy the full journey — from designing the structure of a page to deploying it live. Currently leveling up my skills one project at a time.
+            </p>
+          </div>
+        </div>
+
+        <!-- Live Clock & Location Card -->
+        <div class="bento-card bento-card-clock glass-card">
+          <div class="card-icon-header">
+            <svg class="bento-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span class="card-mini-title">LOCATION & TIME</span>
+          </div>
+          <div class="clock-display">
+            <div class="clock-time" id="live-ist-time">--:--:--</div>
+            <div class="clock-zone">India (IST • UTC +5:30)</div>
+          </div>
+          <p class="clock-note">Available for remote collaboration and learning opportunities.</p>
+        </div>
+
+        <!-- Animated Stats Bento Card -->
+        <div class="bento-card bento-card-stats glass-card bento-card-full-width">
+          <div class="card-icon-header">
+            <svg class="bento-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+            <span class="card-mini-title">STATS & HIGHLIGHTS</span>
+          </div>
+          <div class="stats-grid stats-grid-3" id="about-stats">
+            <!-- JS dynamically injects stat chips -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SKILLS & TECHNOLOGIES SECTION
+    ============================================================ -->
+    <section id="skills" class="skills-section">
+      <div class="section-header">
+        <div class="section-badge">
+          <span>SKILLS</span>
+        </div>
+        <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
+        <p class="section-subtitle">Languages, frameworks, and tools I work with.</p>
+      </div>
+
+      <!-- Skill Category Filter Tabs -->
+      <div class="skills-filter-container" id="skills-filter-container">
+        <!-- JS builds filter tabs -->
+      </div>
+
+      <div class="skills-grid" id="skills-container">
+        <!-- JS dynamically builds skill items -->
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROJECTS SECTION
+    ============================================================ -->
+    <section id="projects" class="projects-section">
+      <div class="section-header">
+        <div class="section-badge">
+          <span>PORTFOLIO</span>
+        </div>
+        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+        <p class="section-subtitle">A collection of web applications and projects I have built.</p>
+      </div>
+
+      <div class="projects-grid" id="projects-grid">
+        <!-- JS dynamically builds project cards -->
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT SECTION
+    ============================================================ -->
+    <section id="contact" class="contact-section">
+      <div class="section-header">
+        <div class="section-badge">
+          <span>CONTACT</span>
+        </div>
+        <h2 class="section-title">Get in <span class="gradient-text">Touch</span></h2>
+        <p class="section-subtitle">Feel free to reach out if you have a question, want to collaborate on a project, or just want to say hello!</p>
+      </div>
+
+      <div class="contact-wrapper glass-card">
+        <div class="contact-grid">
+          <!-- Left Column: Direct Info & Quick Copy -->
+          <div class="contact-info-col">
+            <h3 class="contact-headline" id="contact-headline">Let's connect</h3>
+            <p class="contact-intro" id="contact-intro"></p>
+
+            <div class="email-action-box">
+              <span class="email-label">EMAIL ADDRESS</span>
+              <div class="email-row">
+                <a class="contact-email" id="contact-email" href="#"></a>
+                <button id="copy-email-btn" class="copy-btn" title="Copy email address" aria-label="Copy email">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="contact-meta">
+              <div class="meta-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Based in India</span>
+              </div>
+              <div class="meta-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>Fast response via Email</span>
+              </div>
+            </div>
+
+            <div class="social-links-wrapper">
+              <span class="social-label">FIND ME ONLINE</span>
+              <div class="contact-links" id="contact-links">
+                <!-- JS builds rich social links -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Contact Form -->
+          <div class="contact-form-col">
+            <div class="form-card">
+              <h4 class="form-title">Send a Message</h4>
+              <form id="contact-form" class="contact-form" novalidate>
+                <div class="form-group">
+                  <label for="form-name" class="form-label">Your Name <span class="required">*</span></label>
+                  <input type="text" id="form-name" name="name" class="form-input" placeholder="e.g. Rahul Sharma"
+                    required />
+                  <span class="form-error" id="name-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="form-email" class="form-label">Your Email <span class="required">*</span></label>
+                  <input type="email" id="form-email" name="email" class="form-input"
+                    placeholder="e.g. rahul@example.com" required />
+                  <span class="form-error" id="email-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="form-subject" class="form-label">Subject</label>
+                  <input type="text" id="form-subject" name="subject" class="form-input"
+                    placeholder="Project Inquiry / Feedback" />
+                </div>
+
+                <div class="form-group">
+                  <label for="form-message" class="form-label">Message <span class="required">*</span></label>
+                  <textarea id="form-message" name="message" class="form-textarea" rows="4"
+                    placeholder="Write your message here..." required></textarea>
+                  <span class="form-error" id="message-error"></span>
+                </div>
+
+                <button type="submit" id="form-submit-btn" class="btn btn-primary btn-glow w-full">
+                  <span>Send Message</span>
+                  <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+
+                <div id="form-feedback" class="form-feedback" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- ============================================================
        FOOTER
   ============================================================ -->
-  <footer id="footer">
-    <p id="footer-text"></p>  <!-- JS fills this -->
+  <footer id="footer" class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-monogram"><span>SS</span></div>
+          <div>
+            <h3 class="footer-name">Sambit Sourav</h3>
+            <p class="footer-tagline">Web Developer Portfolio</p>
+          </div>
+        </div>
+        <ul class="footer-nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <p id="footer-text" class="footer-copy"></p>
+        <p class="footer-tech">Crafted with HTML, CSS & JavaScript</p>
+      </div>
+    </div>
   </footer>
 
-  <!-- Your scripts — load AFTER the HTML so JS can find the elements -->
-  <script src="script.js"></script>
+  <!-- ============================================================
+       FLOATING BACK TO TOP BUTTON WITH SCROLL RING
+  ============================================================ -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <svg class="progress-ring" width="48" height="48" viewBox="0 0 48 48">
+      <circle class="progress-ring-circle-bg" stroke="rgba(232, 213, 163, 0.15)" stroke-width="3" fill="transparent"
+        r="20" cx="24" cy="24" />
+      <circle id="progress-ring-circle" class="progress-ring-circle" stroke="#e8d5a3" stroke-width="3"
+        stroke-dasharray="125.66" stroke-dashoffset="125.66" fill="transparent" r="20" cx="24" cy="24" />
+    </svg>
+    <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </button>
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- JavaScript logic -->
+  <script src="script.js"></script>
 </body>
+
 </html>
