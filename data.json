@@ -77,7 +77,7 @@
         "Open-Meteo"
       ],
       "github": "https://github.com/sambitsauravji-cmd/weather-app-project",
-      "live": "https://sambitsauravji-cmd.github.io/weather-app-project/"
+      "live": "http://localhost:8080"
     },
     {
       "title": "Portfolio v1",
