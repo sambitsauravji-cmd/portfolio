@@ -67,15 +67,17 @@
       "live": "#"
     },
     {
-      "title": "WeatherNow",
-      "description": "A real-time weather app that fetches data from OpenWeatherMap API and displays forecasts with animated icons.",
+      "title": "AetherCast",
+      "description": "Next-gen atmospheric weather intelligence web application featuring 60 FPS particle simulations, 36-hour & 7-day forecasts, live city clocks, and full Air Quality Index telemetry.",
       "tags": [
         "JavaScript",
+        "HTML5 Canvas",
+        "CSS3 Glassmorphism",
         "REST API",
-        "CSS"
+        "Open-Meteo"
       ],
-      "github": "https://github.com/sambitsauravji-cmd/portfolio",
-      "live": "#"
+      "github": "https://github.com/sambitsauravji-cmd/weather-app-project",
+      "live": "https://sambitsauravji-cmd.github.io/weather-app-project/"
     },
     {
       "title": "Portfolio v1",
