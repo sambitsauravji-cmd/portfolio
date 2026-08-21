@@ -107,20 +107,31 @@ function startTypewriter(roles) {
 function buildAbout(about) {
   document.getElementById("about-description").textContent = about.description;
 
+  // Inject photo if "image" exists in data.json
+  if (about.image) {
+    const aboutCard = document.querySelector(".about-card");
+
+    const imgWrapper = document.createElement("div");
+    imgWrapper.className = "about-image-wrapper";
+
+    const img = document.createElement("img");
+    img.src = about.image;                 // reads "assets/images/profile.jpg"
+    img.alt = "Sambit Sourav";
+    img.className = "about-image";
+
+    imgWrapper.appendChild(img);
+    aboutCard.insertBefore(imgWrapper, aboutCard.firstChild); // puts photo before text
+  }
+
   const statsContainer = document.getElementById("about-stats");
 
   about.stats.forEach(stat => {
-    // Create a div element in memory (not on page yet)
     const chip = document.createElement("div");
     chip.className = "stat-chip";
-
-    // Build the inner HTML of that chip
     chip.innerHTML = `
       <span class="stat-value">${stat.value}</span>
       <span class="stat-label">${stat.label}</span>
     `;
-
-    // NOW attach it to the page
     statsContainer.appendChild(chip);
   });
 }

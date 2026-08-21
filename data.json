@@ -5,6 +5,7 @@
 
   "about": {
     "description": "I'm Sambit Sourav, a web developer from India with a deep interest in building things that live on the internet. I enjoy the full journey — from designing the structure of a page to deploying it live. Currently leveling up my skills one project at a time.",
+    "image": "profile.jpg",
     "stats": [
       { "label": "Projects Built", "value": "10+" },
       { "label": "Technologies", "value": "8+" },
@@ -15,7 +16,7 @@
   "skills": [
     {
       "category": "Languages",
-      "items": ["HTML", "CSS", "JavaScript", "Python", "Java"]
+      "items": ["HTML", "CSS", "JavaScript", "Python"]
     },
     {
       "category": "Frameworks & Libraries",
@@ -29,24 +30,24 @@
 
   "projects": [
     {
-      "title": "Photo frame website",
-      "description": "A static website to showcase photo frames for a Photo frame business.",
-      "tags": ["HTML", "CSS", "JavaScript"],
-      "github": "https://github.com/sambitsauravji-cmd",
+      "title": "DevLink",
+      "description": "A developer bookmark manager to save, tag, and search useful links. Built with vanilla JS and local storage.",
+      "tags": ["HTML", "CSS", "JavaScript", "JAVA", "REST API"],
+      "github": "https://github.com/sambitsauravji-cmd/portfolio",
       "live": "#"
     },
     {
       "title": "WeatherNow",
       "description": "A real-time weather app that fetches data from OpenWeatherMap API and displays forecasts with animated icons.",
       "tags": ["JavaScript", "REST API", "CSS"],
-      "github": "https://github.com/sambitsauravji-cmd",
+      "github": "https://github.com/sambitsauravji-cmd/portfolio",
       "live": "#"
     },
     {
       "title": "Portfolio v1",
       "description": "My first portfolio website — built to learn HTML & CSS fundamentals. Replaced by this version.",
       "tags": ["HTML", "CSS"],
-      "github": "https://github.com/sambitsauravji-cmd",
+      "github": "https://github.com/sambitsauravji-cmd/portfolio",
       "live": "#"
     }
   ],
@@ -55,9 +56,9 @@
     "intro": "I'm currently open to new opportunities and collaborations. Whether it's a project, a question, or just a hello — my inbox is open.",
     "email": "sambitsauravji@gmail.com",
     "socials": [
-      { "label": "GitHub", "url": "https://github.com/sambitsauravji-cmd", "icon": "GH" },
+      { "label": "GitHub", "url": "https://github.com/sambitsauravji-cmd/portfolio", "icon": "GH" },
       { "label": "LinkedIn", "url": "https://www.linkedin.com/in/sambit-sourav-0107b02b5/", "icon": "LI" },
-      { "label": "X", "url": "https://x.com/SambitSourav11", "icon": "X" }
+      { "label": "Twitter", "url": "https://x.com/SambitSourav11", "icon": "X" }
     ]
   },
 
